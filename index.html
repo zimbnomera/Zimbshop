@@ -2,216 +2,264 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ZIMB SHOP</title>
+<title>ZIMB NUMBER SHOP</title>
+
 <style>
-body {
-  margin: 0;
-  font-family: 'Courier New', monospace;
-  background: #111;
-  color: #00ff9f;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px 20px;
-  overflow-x: hidden;
-  position: relative;
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:#eaeaea;
 }
 
-/* Фон с анимированными линиями */
-body::before {
-  content: '';
-  position: absolute;
-  top:0; left:0; width:100%; height:100%;
-  background: linear-gradient(90deg, rgba(0,207,255,0.1) 1px, transparent 1px), 
-              linear-gradient(0deg, rgba(0,207,255,0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: 0;
-  animation: moveBG 10s linear infinite;
-}
-@keyframes moveBG {
-  from {background-position: 0 0;}
-  to {background-position: 40px 40px;}
+header{
+text-align:center;
+padding:30px;
+font-size:40px;
+font-weight:bold;
+color:#00ff9f;
+letter-spacing:3px;
 }
 
-h1 {
-  font-size: 60px;
-  margin: 0;
-  color: #ff004c;
-  animation: glow 2s infinite alternate;
-  z-index:1;
+.container{
+display:flex;
+justify-content:space-between;
+padding:30px;
+gap:30px;
 }
 
-.subtitle {
-  font-size: 22px;
-  margin: 10px 0 30px;
-  color: #00ff9f;
-  z-index:1;
+/* левая колонка */
+.info{
+width:40%;
+background:#151515;
+padding:25px;
+border-radius:10px;
 }
 
-/* Анимация заголовка */
-@keyframes glow {
-  from { text-shadow: 0 0 5px #ff004c, 0 0 10px #ff004c; }
-  to { text-shadow: 0 0 20px #ff004c, 0 0 40px #ff004c; }
+.info h2{
+color:#00ff9f;
 }
 
-/* Прайс-лист */
-table {
-  border-collapse: collapse;
-  width: 90%;
-  max-width: 900px;
-  margin-bottom: 40px;
-  position: relative;
-  z-index:1;
+.info p{
+line-height:1.6;
 }
 
-th, td {
-  border: 1px solid #00ff9f;
-  padding: 10px;
-  text-align: center;
-  transition: 0.3s;
+/* прайс */
+.price{
+width:60%;
+background:#151515;
+padding:20px;
+border-radius:10px;
 }
 
-th {
-  background-color: #111;
-  color: #ff004c;
+/* поиск */
+.controls{
+margin-bottom:15px;
+display:flex;
+gap:10px;
 }
 
-tr:nth-child(even) {
-  background-color: rgba(0,255,159,0.05);
+.controls input{
+padding:8px;
+width:200px;
+border:none;
+border-radius:6px;
 }
 
-/* Пульсирующая подсветка при наведении */
-tr:hover {
-  animation: pulse 1s infinite alternate;
-  cursor: pointer;
+.controls button{
+padding:8px 12px;
+border:none;
+border-radius:6px;
+background:#00ff9f;
+cursor:pointer;
 }
 
-@keyframes pulse {
-  from { background-color: rgba(255,0,76,0.2); }
-  to { background-color: rgba(255,0,76,0.4); }
+/* таблица */
+
+table{
+width:100%;
+border-collapse:collapse;
 }
 
-/* Иконки рядом с номерами */
-.icon {
-  margin-right: 6px;
-  vertical-align: middle;
+th,td{
+padding:10px;
+border-bottom:1px solid #333;
 }
 
-/* Кнопки */
-.button, .button-alt {
-  background-color: #00ff9f;
-  border: none;
-  padding: 20px 50px;
-  font-size: 22px;
-  cursor: pointer;
-  transition: 0.4s;
-  text-decoration: none;
-  color: black;
-  margin: 10px;
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  position: relative;
-  z-index:1;
+th{
+color:#00ff9f;
 }
 
-.button:hover, .button-alt:hover {
-  background-color: #ff004c;
-  color: white;
-  box-shadow: 0 0 20px #ff004c, 0 0 40px #ff004c;
+tr:hover{
+background:#1c1c1c;
 }
 
-/* Появление кнопки при клике */
-.show {
-  animation: fadeIn 0.5s forwards;
+/* кнопка */
+
+.telegram{
+display:block;
+width:250px;
+margin:40px auto;
+text-align:center;
+padding:15px;
+background:#00ff9f;
+color:black;
+font-weight:bold;
+border-radius:8px;
+text-decoration:none;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.telegram:hover{
+background:#00cc7f;
 }
 
-/* Разделители */
-.divider {
-  width: 80%;
-  height: 1px;
-  background: rgba(0,255,159,0.2);
-  margin: 30px 0;
-  position: relative;
-  z-index:1;
-}
 </style>
 </head>
+
 <body>
 
-<h1>ZIMB SHOP</h1>
-<div class="subtitle">ZIMB NUMBER SHOP</div>
+<header>ZIMB NUMBER SHOP</header>
 
-<div class="divider"></div>
+<div class="container">
 
-<table id="pricelist">
-  <tr><th>Страна / Номер</th><th>Цена (₽)</th></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">📞</span>Анонимный Telegram +888</td><td>6500 / мес</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇦🇪</span>ОАЭ (Дубай) +971</td><td>300</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇪🇸</span>Испания +34</td><td>120</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇫🇷</span>Франция +33</td><td>180</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇩🇪</span>Германия +49</td><td>150</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇯🇵</span>Япония +81</td><td>225</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇲🇩</span>Молдова +373</td><td>215</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇬🇷</span>Греция +30</td><td>120</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇦🇫</span>Афганистан +93</td><td>125</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇵🇱</span>Польша +48</td><td>200</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇺🇦</span>Украина (физ. сим) +380</td><td>230</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇧🇷</span>Бразилия +55</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇹🇭</span>Таиланд +66</td><td>250</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇺🇿</span>Узбекистан (физ. сим) +998</td><td>140</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇦🇷</span>Аргентина +54</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇵🇭</span>Филиппины +63</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇹🇷</span>Турция +90</td><td>150</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇰🇿</span>Казахстан +7</td><td>250</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇾🇪</span>Йемен +967</td><td>125</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇻🇪</span>Венесуэла +58</td><td>110</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇸🇾</span>Сирия +963</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇲🇽</span>Мексика +52</td><td>110</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇲🇾</span>Малайзия +60</td><td>110</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇬🇧</span>Великобритания +44</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇻🇳</span>Вьетнам +84</td><td>200</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇮🇷</span>Иран +98</td><td>120</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇧🇩</span>Бангладеш +880</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇮🇳</span>Индия +91</td><td>65</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇪🇬</span>Египет +20</td><td>100</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇨🇺</span>Куба +53</td><td>75</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇨🇴</span>Колумбия +57</td><td>90</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇮🇩</span>Индонезия +62</td><td>80</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇲🇲</span>Мьянма +95</td><td>65</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇨🇦</span>Канада +1</td><td>75</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇺🇸</span>Америка +1</td><td>75</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇷🇺</span>РФ номер</td><td>300</td></tr>
-  <tr data-tg="@ZimbNomera"><td><span class="icon">🇷🇺</span>Перенос номера на РФ</td><td>350</td></tr>
+<div class="info">
+
+<h2>Зачем нужны Telegram номера?</h2>
+
+<p>Telegram номера используются для регистрации аккаунтов без личной SIM-карты.</p>
+
+<p>Они помогают сохранить анонимность и защитить основной номер.</p>
+
+<p>Подходят для:</p>
+
+<p>
+• Telegram каналов<br>
+• маркетинга<br>
+• дополнительных аккаунтов<br>
+• безопасной коммуникации
+</p>
+
+<p>Все номера проверены и работают стабильно.</p>
+
+</div>
+
+<div class="price">
+
+<div class="controls">
+
+<input type="text" id="search" placeholder="Поиск страны...">
+
+<button onclick="cheap()">До 100₽</button>
+
+<button onclick="showAll()">Все</button>
+
+</div>
+
+<table id="priceTable">
+
+<tr>
+<th>Номер</th>
+<th>Цена ₽</th>
+</tr>
+
+<tr><td>Анонимный Telegram +888</td><td>6500</td></tr>
+<tr><td>ОАЭ +971</td><td>300</td></tr>
+<tr><td>Испания +34</td><td>120</td></tr>
+<tr><td>Франция +33</td><td>180</td></tr>
+<tr><td>Германия +49</td><td>150</td></tr>
+<tr><td>Япония +81</td><td>225</td></tr>
+<tr><td>Молдова +373</td><td>215</td></tr>
+<tr><td>Греция +30</td><td>120</td></tr>
+<tr><td>Афганистан +93</td><td>125</td></tr>
+<tr><td>Польша +48</td><td>200</td></tr>
+<tr><td>Украина +380</td><td>230</td></tr>
+<tr><td>Бразилия +55</td><td>90</td></tr>
+<tr><td>Таиланд +66</td><td>250</td></tr>
+<tr><td>Узбекистан +998</td><td>140</td></tr>
+<tr><td>Аргентина +54</td><td>90</td></tr>
+<tr><td>Филиппины +63</td><td>90</td></tr>
+<tr><td>Турция +90</td><td>150</td></tr>
+<tr><td>Казахстан +7</td><td>250</td></tr>
+<tr><td>Йемен +967</td><td>125</td></tr>
+<tr><td>Венесуэла +58</td><td>110</td></tr>
+<tr><td>Сирия +963</td><td>90</td></tr>
+<tr><td>Мексика +52</td><td>110</td></tr>
+<tr><td>Малайзия +60</td><td>110</td></tr>
+<tr><td>Великобритания +44</td><td>90</td></tr>
+<tr><td>Вьетнам +84</td><td>200</td></tr>
+<tr><td>Иран +98</td><td>120</td></tr>
+<tr><td>Бангладеш +880</td><td>90</td></tr>
+<tr><td>Индия +91</td><td>65</td></tr>
+<tr><td>Египет +20</td><td>100</td></tr>
+<tr><td>Куба +53</td><td>75</td></tr>
+<tr><td>Колумбия +57</td><td>90</td></tr>
+<tr><td>Индонезия +62</td><td>80</td></tr>
+<tr><td>Мьянма +95</td><td>65</td></tr>
+<tr><td>Канада +1</td><td>75</td></tr>
+<tr><td>Америка +1</td><td>75</td></tr>
+<tr><td>РФ номер</td><td>300</td></tr>
+<tr><td>Перенос номера на РФ</td><td>350</td></tr>
+
 </table>
 
-<div class="divider"></div>
+</div>
 
-<a href="https://t.me/ZimbNomera" target="_blank" id="tgButton" class="button">Перейти в Telegram</a>
-<a href="https://t.me/otzivizimbnomera" target="_blank" class="button-alt">Отзывы</a>
+</div>
+
+<a class="telegram" href="https://t.me/ZimbNomera" target="_blank">
+Купить в Telegram
+</a>
 
 <script>
-// Скрываем кнопку изначально
-const tgButton = document.getElementById('tgButton');
-tgButton.style.opacity = 0;
 
-// Клик по любой строке открывает Telegram и показывает кнопку
-const rows = document.querySelectorAll('#pricelist tr[data-tg]');
-rows.forEach(row => {
-  row.addEventListener('click', () => {
-    const tg = row.getAttribute('data-tg');
-    tgButton.classList.add('show');
-    setTimeout(() => {
-      window.open(`https://t.me/${tg}`, '_blank');
-    }, 300);
-  });
-});
+/* поиск */
+
+document.getElementById("search").addEventListener("keyup", function(){
+
+let filter=this.value.toLowerCase()
+let rows=document.querySelectorAll("#priceTable tr")
+
+rows.forEach((row,i)=>{
+
+if(i===0)return
+
+let text=row.innerText.toLowerCase()
+
+row.style.display=text.includes(filter)?"":"none"
+
+})
+
+})
+
+/* дешевые */
+
+function cheap(){
+
+let rows=document.querySelectorAll("#priceTable tr")
+
+rows.forEach((row,i)=>{
+
+if(i===0)return
+
+let price=row.cells[1].innerText
+
+row.style.display=(price<=100)?"":"none"
+
+})
+
+}
+
+/* показать все */
+
+function showAll(){
+
+let rows=document.querySelectorAll("#priceTable tr")
+
+rows.forEach(row=>row.style.display="")
+
+}
+
 </script>
 
 </body>

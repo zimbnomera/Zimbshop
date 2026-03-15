@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ЛУЧШИЕ ФИЗЫ У МЕНЯ ЖМИ!</title>
+<meta charset="UTF-8">
+<title>VOID SIGNAL</title>
 
 <style>
 
 body{
+margin:0;
 background:black;
-color:#00ffcc;
+color:#00ff9f;
 font-family:monospace;
-text-align:center;
-padding-top:15%;
+overflow:hidden;
 }
 
-h1{
-font-size:60px;
-letter-spacing:5px;
-animation: glitch 1s infinite;
-}
+/* загрузка */
 
-p{
-color:#ff004c;
+#loading{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+color:#00ff9f;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
 font-size:20px;
+z-index:999;
 }
+
+/* основной сайт */
+
+#main{
+display:none;
+text-align:center;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+/* glitch */
+
+.glitch{
+font-size:60px;
+animation:glitch 1s infinite;
+}
+
+@keyframes glitch{
+0%{text-shadow:2px 2px red;}
+50%{text-shadow:-2px -2px blue;}
+100%{text-shadow:2px -2px red;}
+}
+
+/* кнопка */
 
 button{
-background:#00ffcc;
+background:#00ff9f;
 border:none;
 padding:20px 40px;
 font-size:20px;
@@ -38,10 +70,21 @@ background:#ff004c;
 color:white;
 }
 
-@keyframes glitch{
-0%{text-shadow:3px 3px red;}
-50%{text-shadow:-3px -3px blue;}
-100%{text-shadow:3px -3px red;}
+/* терминал */
+
+#terminal{
+margin-top:30px;
+color:#00ff9f;
+font-size:16px;
+}
+
+/* matrix canvas */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
 </style>
@@ -49,14 +92,145 @@ color:white;
 
 <body>
 
-<h1>VOID SIGNAL</h1>
+<canvas id="matrix"></canvas>
 
-<p>Restricted access detected</p>
+<div id="loading">
 
-<a href="https://t.me/zimbnomer">
-<button>жми сюда физы тут !!!</button>
+<div id="loadText">INITIALIZING SYSTEM...</div>
+
+</div>
+
+<div id="main">
+
+<h1 class="glitch">VOID SIGNAL</h1>
+
+<div id="terminal"></div>
+
+<a href="https://t.me/ВАШ_МАГАЗИН">
+<button>ENTER STORE</button>
 </a>
 
-</body>
+</div>
 
+<script>
+
+/* загрузка */
+
+let messages=[
+"INITIALIZING SYSTEM...",
+"SCANNING NETWORK...",
+"DETECTING USER...",
+"ACCESS GRANTED"
+];
+
+let i=0;
+
+function loading(){
+
+if(i<messages.length){
+
+document.getElementById("loadText").innerText=messages[i];
+
+i++;
+
+setTimeout(loading,1000);
+
+}else{
+
+document.getElementById("loading").style.display="none";
+
+document.getElementById("main").style.display="block";
+
+startTerminal();
+
+}
+
+}
+
+loading();
+
+/* терминал */
+
+let terminalText=[
+"> connecting to network...",
+"> bypassing firewall...",
+"> secure channel created",
+"> welcome user"
+];
+
+let t=0;
+
+function startTerminal(){
+
+let terminal=document.getElementById("terminal");
+
+let interval=setInterval(()=>{
+
+if(t<terminalText.length){
+
+terminal.innerHTML+=terminalText[t]+"<br>";
+
+t++;
+
+}else{
+
+clearInterval(interval);
+
+}
+
+},800);
+
+}
+
+/* matrix background */
+
+let canvas=document.getElementById("matrix");
+
+let ctx=canvas.getContext("2d");
+
+canvas.height=window.innerHeight;
+
+canvas.width=window.innerWidth;
+
+let letters="01";
+
+letters=letters.split("");
+
+let fontSize=14;
+
+let columns=canvas.width/fontSize;
+
+let drops=[];
+
+for(let x=0;x<columns;x++)
+drops[x]=1;
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ff9f";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+let text=letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height&&Math.random()>0.975)
+drops[i]=0;
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,33);
+
+</script>
+
+</body>
 </html>

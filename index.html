@@ -3,219 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <title>ZIMB NUMBER SHOP</title>
-
 <style>
-
+:root{
+--bg:#0e0e0e;
+--card:#151515;
+--text:#eaeaea;
+--accent:#00ff9f;
+}
+.light{
+--bg:#f4f4f4;
+--card:#ffffff;
+--text:#111;
+--accent:#0077ff;
+}
 body{
 margin:0;
 font-family:Arial;
-background:#0e0e0e;
-color:#eaeaea;
+background:var(--bg);
+color:var(--text);
+transition:0.3s;
 opacity:0;
 animation:fadeIn 1s forwards;
 }
-
-/* плавное появление */
-
-@keyframes fadeIn{
-to{opacity:1;}
-}
-
+@keyframes fadeIn{ to{opacity:1;} }
 header{
-text-align:center;
-padding:15px;
-font-size:26px;
-font-weight:bold;
-color:#00ff9f;
-}
-
-/* контейнер */
-
-.container{
 display:flex;
-gap:15px;
-padding:15px;
-max-width:1200px;
-margin:auto;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+font-size:24px;
+font-weight:bold;
+color:var(--accent);
 }
-
-/* инфо */
-
+.theme{
+cursor:pointer;
+padding:6px 10px;
+border-radius:6px;
+background:var(--card);
+font-size:14px;
+}
+.container{display:flex;gap:15px;padding:15px;max-width:1200px;margin:auto;}
 .info{
 width:40%;
-background:#151515;
+background:var(--card);
 padding:15px;
-border-radius:6px;
+border-radius:8px;
 font-size:13px;
-line-height:1.4;
+line-height:1.5;
 }
-
-.info h3{
-color:#00ff9f;
-margin-top:10px;
-}
-
-/* магазин */
-
-.shop{
-width:60%;
-}
-
-/* поиск */
-
-.search{
-margin-bottom:10px;
-}
-
+.info h3{color:var(--accent);}
+.shop{width:60%;}
 .search input{
-width:100%;
-padding:7px;
-border:none;
-border-radius:5px;
+width:100%;padding:8px;border:none;border-radius:6px;margin-bottom:10px;
 }
-
-/* карточки */
-
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
 gap:10px;
 }
-
-/* карточка */
-
 .card{
-background:#151515;
+background:var(--card);
 padding:10px;
-border-radius:6px;
+border-radius:8px;
 text-align:center;
 font-size:13px;
-transition:0.25s;
-animation:cardFade 0.8s ease;
+transition:0.2s;
 }
-
-@keyframes cardFade{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.card:hover{
-background:#1c1c1c;
-transform:scale(1.04);
-}
-
-.country{
-font-size:14px;
-margin-bottom:5px;
-}
-
-.price{
-color:#00ff9f;
-font-weight:bold;
-}
-
-.buy{
-display:block;
-background:#00ff9f;
-color:black;
-padding:5px;
-border-radius:4px;
-text-decoration:none;
-font-size:12px;
-margin-top:6px;
-}
-
-.buy:hover{
-background:#00cc7f;
-}
-
-.telegram{
-display:block;
-width:200px;
-margin:20px auto;
-text-align:center;
-padding:10px;
-background:#00ff9f;
-color:black;
-font-weight:bold;
-border-radius:6px;
-text-decoration:none;
-}
-
-.footer{
-text-align:center;
-font-size:12px;
-color:#777;
-padding-bottom:15px;
-}
-
+.card:hover{transform:scale(1.04);}
+.country{font-size:14px;margin-bottom:5px;}
+.price{color:var(--accent);font-weight:bold;}
+.buy{display:block;background:var(--accent);color:black;padding:5px;border-radius:5px;text-decoration:none;font-size:12px;margin-top:6px;}
+.telegram{display:block;width:200px;margin:20px auto;text-align:center;padding:10px;background:var(--accent);color:black;font-weight:bold;border-radius:8px;text-decoration:none;}
+.footer{text-align:center;font-size:12px;padding-bottom:20px;opacity:0.7;}
 </style>
 </head>
-
 <body>
 
-<header>ZIMB NUMBER SHOP</header>
+<header>
+ZIMB NUMBER SHOP
+<div class="theme" onclick="toggleTheme()">🌙 / ☀</div>
+</header>
 
 <div class="container">
 
 <div class="info">
-
 <h3>Что такое Telegram номера</h3>
-
-<p>
-Telegram номера — это реальные или виртуальные
-номера разных стран, которые используются для
-регистрации аккаунтов без личной SIM карты.
-</p>
+<p>Это реальные или виртуальные номера разных стран, которые позволяют зарегистрировать Telegram аккаунт без личной SIM карты.</p>
 
 <h3>Для чего используют</h3>
-
-<p>
-• создание дополнительных Telegram аккаунтов<br>
+<p>• создание дополнительных аккаунтов<br>
 • управление каналами и ботами<br>
 • маркетинг и реклама<br>
 • защита личного номера<br>
-• регистрация сервисов
-</p>
+• регистрация сервисов</p>
 
 <h3>Преимущества</h3>
-
-<p>
-✔ стабильная работа<br>
-✔ большой выбор стран<br>
-✔ быстрый доступ<br>
-✔ безопасная регистрация
-</p>
+<p>✔ Быстрая выдача<br>
+✔ Проверенные номера<br>
+✔ Поддержка всех стран<br>
+✔ Полная анонимность<br>
+✔ Гарантия замены при проблеме</p>
 
 <h3>Как проходит покупка</h3>
+<p>1️⃣ Выбираете страну<br>
+2️⃣ Нажимаете кнопку "написать"<br>
+3️⃣ Получаете номер<br>
+4️⃣ Оплачиваете любым удобным способом (криптовалюта/рубли)</p>
 
-<p>
-1️⃣ выбираете страну<br>
-2️⃣ нажимаете кнопку написать<br>
-3️⃣ оплачиваете номер<br>
-4️⃣ получаете его сразу же после покупки
-</p>
-
-<h3>Гарантия</h3>
-
-<p>
-Все номера проверены и выдаются
-в рабочем состоянии.  
-При проблемах возможна замена.
-</p>
-
-<h3>Оплата</h3>
-
-<p>
-💰 криптовалюта<br>
-💰 рубли
-</p>
+<h3>Безопасность</h3>
+<p>Все номера проверены, работают стабильно, возможна замена при проблеме. Ваши данные остаются конфиденциальными.</p>
 
 </div>
 
@@ -227,59 +123,43 @@ Telegram номера — это реальные или виртуальные
 
 <div class="grid" id="numbers">
 
-<div class="card">
-<div class="country">⭐ 🇺🇸 США</div>
-<div class="price">75 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+1">написать</a>
-</div>
-
-<div class="card">
-<div class="country">⭐ 🇬🇧 Великобритания</div>
-<div class="price">90 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+44">написать</a>
-</div>
-
-<div class="card">
-<div class="country">⭐ 🇮🇳 Индия</div>
-<div class="price">65 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+91">написать</a>
-</div>
-
-<div class="card">
-<div class="country">🇪🇸 Испания</div>
-<div class="price">120 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+34">написать</a>
-</div>
-
-<div class="card">
-<div class="country">🇫🇷 Франция</div>
-<div class="price">180 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+33">написать</a>
-</div>
-
-<div class="card">
-<div class="country">🇩🇪 Германия</div>
-<div class="price">150 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+49">написать</a>
-</div>
-
-<div class="card">
-<div class="country">🇧🇷 Бразилия</div>
-<div class="price">90 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+55">написать</a>
-</div>
-
-<div class="card">
-<div class="country">🇨🇦 Канада</div>
-<div class="price">75 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20Канада">написать</a>
-</div>
-
-<div class="card">
-<div class="country">🇷🇺 Россия</div>
-<div class="price">300 ₽</div>
-<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20РФ">написать</a>
-</div>
+<!-- ВСЕ НОМЕРА ИЗ ПРАЙС-ЛИСТА -->
+<div class="card"><div class="country">🎃 Анонимный Telegram</div><div class="price">6500 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +888">написать</a></div>
+<div class="card"><div class="country">🇦🇪 ОАЭ (Дубай)</div><div class="price">300 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +971">написать</a></div>
+<div class="card"><div class="country">🇪🇸 Испания</div><div class="price">120 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +34">написать</a></div>
+<div class="card"><div class="country">🇫🇷 Франция</div><div class="price">180 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +33">написать</a></div>
+<div class="card"><div class="country">🇩🇪 Германия</div><div class="price">150 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +49">написать</a></div>
+<div class="card"><div class="country">🇯🇵 Япония</div><div class="price">225 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +81">написать</a></div>
+<div class="card"><div class="country">🇲🇩 Молдова</div><div class="price">215 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +373">написать</a></div>
+<div class="card"><div class="country">🇬🇷 Греция</div><div class="price">120 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +30">написать</a></div>
+<div class="card"><div class="country">🇦🇫 Афганистан</div><div class="price">125 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +93">написать</a></div>
+<div class="card"><div class="country">🇵🇱 Польша</div><div class="price">200 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +48">написать</a></div>
+<div class="card"><div class="country">🇺🇦 Украина (физ. сим)</div><div class="price">230 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +380">написать</a></div>
+<div class="card"><div class="country">🇧🇷 Бразилия</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +55">написать</a></div>
+<div class="card"><div class="country">🇹🇭 Таиланд</div><div class="price">250 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +66">написать</a></div>
+<div class="card"><div class="country">🇺🇿 Узбекистан (физ. сим)</div><div class="price">140 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +998">написать</a></div>
+<div class="card"><div class="country">🇦🇷 Аргентина</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +54">написать</a></div>
+<div class="card"><div class="country">🇵🇭 Филиппины</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +63">написать</a></div>
+<div class="card"><div class="country">🇹🇷 Турция</div><div class="price">150 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +90">написать</a></div>
+<div class="card"><div class="country">🇰🇿 Казахстан</div><div class="price">250 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +7">написать</a></div>
+<div class="card"><div class="country">🇾🇪 Йемен</div><div class="price">125 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +967">написать</a></div>
+<div class="card"><div class="country">🇻🇪 Венесуэла</div><div class="price">110 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +58">написать</a></div>
+<div class="card"><div class="country">🇸🇾 Сирия</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +963">написать</a></div>
+<div class="card"><div class="country">🇲🇽 Мексика</div><div class="price">110 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +52">написать</a></div>
+<div class="card"><div class="country">🇲🇾 Малайзия</div><div class="price">110 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +60">написать</a></div>
+<div class="card"><div class="country">🇬🇧 Великобритания</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +44">написать</a></div>
+<div class="card"><div class="country">🇻🇳 Вьетнам</div><div class="price">200 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +84">написать</a></div>
+<div class="card"><div class="country">🇮🇷 Иран</div><div class="price">120 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +98">написать</a></div>
+<div class="card"><div class="country">🇧🇩 Бангладеш</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +880">написать</a></div>
+<div class="card"><div class="country">🇮🇳 Индия</div><div class="price">65 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +91">написать</a></div>
+<div class="card"><div class="country">🇪🇬 Египет</div><div class="price">100 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +20">написать</a></div>
+<div class="card"><div class="country">🇨🇺 Куба</div><div class="price">75 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +53">написать</a></div>
+<div class="card"><div class="country">🇨🇴 Колумбия</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +57">написать</a></div>
+<div class="card"><div class="country">🇮🇩 Индонезия</div><div class="price">80 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +62">написать</a></div>
+<div class="card"><div class="country">🇲🇲 Мьянма</div><div class="price">65 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +95">написать</a></div>
+<div class="card"><div class="country">🇨🇦 Канада</div><div class="price">75 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +1 Канада">написать</a></div>
+<div class="card"><div class="country">🇺🇸 Америка</div><div class="price">75 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +1 США">написать</a></div>
+<div class="card"><div class="country">🇷🇺 Россия</div><div class="price">300 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер РФ">написать</a></div>
 
 </div>
 
@@ -287,34 +167,36 @@ Telegram номера — это реальные или виртуальные
 
 </div>
 
-<a class="telegram" href="https://t.me/ZimbNomera">
-Написать в Telegram
-</a>
+<a class="telegram" href="https://t.me/ZimbNomera">Написать в Telegram</a>
 
 <div class="footer">
 Отзывы: https://t.me/otzivizimbnomera
 </div>
 
 <script>
-
 let search=document.getElementById("search")
-
 search.addEventListener("keyup",function(){
-
 let filter=this.value.toLowerCase()
 let cards=document.querySelectorAll(".card")
-
 cards.forEach(card=>{
-
 let text=card.innerText.toLowerCase()
-
 card.style.display=text.includes(filter)?"":"none"
-
+})
 })
 
-})
-
+// тема
+function toggleTheme(){
+document.body.classList.toggle("light")
+if(document.body.classList.contains("light")){
+localStorage.setItem("theme","light")
+}else{
+localStorage.setItem("theme","dark")
+}
+}
+if(localStorage.getItem("theme")==="light"){
+document.body.classList.add("light")
+}
 </script>
 
 </body>
-</html>
+                                                                                   </html>

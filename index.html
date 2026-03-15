@@ -26,7 +26,6 @@ opacity:0;
 animation:fadeIn 1s forwards;
 }
 @keyframes fadeIn{ to{opacity:1;} }
-
 header{
 display:flex;
 justify-content:space-between;
@@ -43,8 +42,7 @@ border-radius:6px;
 background:var(--card);
 font-size:14px;
 }
-
-.container{display:flex;gap:15px;padding:15px;max-width:1200px;margin:auto;flex-wrap:wrap;}
+.container{display:flex;gap:15px;padding:15px;max-width:1200px;margin:auto;}
 .info{
 width:40%;
 background:var(--card);
@@ -52,80 +50,30 @@ padding:15px;
 border-radius:8px;
 font-size:13px;
 line-height:1.5;
-margin-bottom:20px;
 }
 .info h3{color:var(--accent);}
-
-.shop{
-width:60%;
-}
-
+.shop{width:60%;}
 .search input{
 width:100%;padding:8px;border:none;border-radius:6px;margin-bottom:10px;
 }
-
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-gap:15px;
-perspective:1000px;
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+gap:10px;
 }
-
 .card{
-width:100%;
-height:120px;
-transform-style: preserve-3d;
-transition: transform 0.6s;
-position: relative;
-cursor:pointer;
-box-shadow:0 3px 6px rgba(0,0,0,0.5);
-opacity:0;
-transform: translateY(20px);
-}
-
-.card.show{opacity:1; transform: translateY(0);}
-.card:hover{transform: scale(1.05);}
-
-.card-inner{
-position:absolute;
-width:100%;
-height:100%;
-border-radius:10px;
 background:var(--card);
-color:var(--text);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-backface-visibility:hidden;
-transition:0.3s;
 padding:10px;
-}
-
-.card-back{
-transform: rotateY(180deg);
-font-size:12px;
-line-height:1.3;
+border-radius:8px;
 text-align:center;
-opacity:0;
-transform: rotateY(180deg) translateY(10px);
-transition:opacity 0.5s, transform 0.5s;
+font-size:13px;
+transition:0.2s;
 }
-
-.card.flipped .card-back{
-opacity:1;
-transform: rotateY(180deg) translateY(0);
-}
-
-.card.flipped .card-front{
-opacity:0.3;
-}
-
-.country{font-size:14px;margin-bottom:5px;font-weight:bold;display:flex;align-items:center;justify-content:center;}
-.country img{width:20px;height:14px;margin-right:5px;}
-
-.price{color:var(--accent);font-weight:bold;margin-bottom:10px;}
-
+.card:hover{transform:scale(1.04);}
+.country{font-size:14px;margin-bottom:5px;}
+.price{color:var(--accent);font-weight:bold;}
+.buy{display:block;background:var(--accent);color:black;padding:5px;border-radius:5px;text-decoration:none;font-size:12px;margin-top:6px;}
+.telegram{display:block;width:200px;margin:20px auto;text-align:center;padding:10px;background:var(--accent);color:black;font-weight:bold;border-radius:8px;text-decoration:none;}
 .footer{text-align:center;font-size:12px;padding-bottom:20px;opacity:0.7;}
 </style>
 </head>
@@ -148,128 +96,85 @@ ZIMB NUMBER SHOP
 • маркетинг и реклама<br>
 • защита личного номера<br>
 • регистрация сервисов</p>
+
+<h3>Преимущества</h3>
+<p>✔ Быстрая выдача<br>
+✔ Проверенные номера<br>
+✔ Поддержка всех стран<br>
+✔ Полная анонимность<br>
+✔ Гарантия замены при проблеме</p>
+
+<h3>Как проходит покупка</h3>
+<p>1️⃣ Выбираете страну<br>
+2️⃣ Нажимаете кнопку "написать"<br>
+3️⃣ Получаете номер<br>
+4️⃣ Оплачиваете любым удобным способом (криптовалюта/рубли)</p>
+
+<h3>Безопасность</h3>
+<p>Все номера проверены, работают стабильно, возможна замена при проблеме. Ваши данные остаются конфиденциальными.</p>
+
 </div>
 
 <div class="shop">
+
 <div class="search">
 <input type="text" id="search" placeholder="Поиск страны">
 </div>
 
-<div class="grid" id="numbers"></div>
+<div class="grid" id="numbers">
+
+<!-- ВСЕ НОМЕРА ИЗ ПРАЙС-ЛИСТА -->
+<div class="card"><div class="country">🎃 Анонимный Telegram</div><div class="price">6500 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +888">написать</a></div>
+<div class="card"><div class="country">🇦🇪 ОАЭ (Дубай)</div><div class="price">300 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +971">написать</a></div>
+<div class="card"><div class="country">🇪🇸 Испания</div><div class="price">120 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +34">написать</a></div>
+<div class="card"><div class="country">🇫🇷 Франция</div><div class="price">180 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +33">написать</a></div>
+<div class="card"><div class="country">🇩🇪 Германия</div><div class="price">150 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +49">написать</a></div>
+<div class="card"><div class="country">🇯🇵 Япония</div><div class="price">225 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +81">написать</a></div>
+<div class="card"><div class="country">🇲🇩 Молдова</div><div class="price">215 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +373">написать</a></div>
+<div class="card"><div class="country">🇬🇷 Греция</div><div class="price">120 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +30">написать</a></div>
+<div class="card"><div class="country">🇦🇫 Афганистан</div><div class="price">125 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +93">написать</a></div>
+<div class="card"><div class="country">🇵🇱 Польша</div><div class="price">200 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +48">написать</a></div>
+<div class="card"><div class="country">🇺🇦 Украина (физ. сим)</div><div class="price">230 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +380">написать</a></div>
+<div class="card"><div class="country">🇧🇷 Бразилия</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +55">написать</a></div>
+<div class="card"><div class="country">🇹🇭 Таиланд</div><div class="price">250 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +66">написать</a></div>
+<div class="card"><div class="country">🇺🇿 Узбекистан (физ. сим)</div><div class="price">140 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +998">написать</a></div>
+<div class="card"><div class="country">🇦🇷 Аргентина</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +54">написать</a></div>
+<div class="card"><div class="country">🇵🇭 Филиппины</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +63">написать</a></div>
+<div class="card"><div class="country">🇹🇷 Турция</div><div class="price">150 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +90">написать</a></div>
+<div class="card"><div class="country">🇰🇿 Казахстан</div><div class="price">250 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +7">написать</a></div>
+<div class="card"><div class="country">🇾🇪 Йемен</div><div class="price">125 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +967">написать</a></div>
+<div class="card"><div class="country">🇻🇪 Венесуэла</div><div class="price">110 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +58">написать</a></div>
+<div class="card"><div class="country">🇸🇾 Сирия</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +963">написать</a></div>
+<div class="card"><div class="country">🇲🇽 Мексика</div><div class="price">110 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +52">написать</a></div>
+<div class="card"><div class="country">🇲🇾 Малайзия</div><div class="price">110 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +60">написать</a></div>
+<div class="card"><div class="country">🇬🇧 Великобритания</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +44">написать</a></div>
+<div class="card"><div class="country">🇻🇳 Вьетнам</div><div class="price">200 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +84">написать</a></div>
+<div class="card"><div class="country">🇮🇷 Иран</div><div class="price">120 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +98">написать</a></div>
+<div class="card"><div class="country">🇧🇩 Бангладеш</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +880">написать</a></div>
+<div class="card"><div class="country">🇮🇳 Индия</div><div class="price">65 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +91">написать</a></div>
+<div class="card"><div class="country">🇪🇬 Египет</div><div class="price">100 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +20">написать</a></div>
+<div class="card"><div class="country">🇨🇺 Куба</div><div class="price">75 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +53">написать</a></div>
+<div class="card"><div class="country">🇨🇴 Колумбия</div><div class="price">90 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +57">написать</a></div>
+<div class="card"><div class="country">🇮🇩 Индонезия</div><div class="price">80 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +62">написать</a></div>
+<div class="card"><div class="country">🇲🇲 Мьянма</div><div class="price">65 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +95">написать</a></div>
+<div class="card"><div class="country">🇨🇦 Канада</div><div class="price">75 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +1 Канада">написать</a></div>
+<div class="card"><div class="country">🇺🇸 Америка</div><div class="price">75 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер +1 США">написать</a></div>
+<div class="card"><div class="country">🇷🇺 Россия</div><div class="price">300 ₽</div><a class="buy" href="https://t.me/ZimbNomera?text=Хочу номер РФ">написать</a></div>
+
 </div>
 
-<div class="footer">Отзывы: https://t.me/otzivizimbnomera</div>
+</div>
+
+</div>
+
+<a class="telegram" href="https://t.me/ZimbNomera">Написать в Telegram</a>
+
+<div class="footer">
+Отзывы: https://t.me/otzivizimbnomera
+</div>
 
 <script>
-// Карта флагов
-const flags = {
-'🎃':'https://cdn-icons-png.flaticon.com/512/616/616408.png', // анонимный
-'🇦🇪':'https://flagcdn.com/w20/ae.png',
-'🇪🇸':'https://flagcdn.com/w20/es.png',
-'🇫🇷':'https://flagcdn.com/w20/fr.png',
-'🇩🇪':'https://flagcdn.com/w20/de.png',
-'🇯🇵':'https://flagcdn.com/w20/jp.png',
-'🇲🇩':'https://flagcdn.com/w20/md.png',
-'🇬🇷':'https://flagcdn.com/w20/gr.png',
-'🇦🇫':'https://flagcdn.com/w20/af.png',
-'🇵🇱':'https://flagcdn.com/w20/pl.png',
-'🇺🇦':'https://flagcdn.com/w20/ua.png',
-'🇧🇷':'https://flagcdn.com/w20/br.png',
-'🇹🇭':'https://flagcdn.com/w20/th.png',
-'🇺🇿':'https://flagcdn.com/w20/uz.png',
-'🇦🇷':'https://flagcdn.com/w20/ar.png',
-'🇵🇭':'https://flagcdn.com/w20/ph.png',
-'🇹🇷':'https://flagcdn.com/w20/tr.png',
-'🇰🇿':'https://flagcdn.com/w20/kz.png',
-'🇾🇪':'https://flagcdn.com/w20/ye.png',
-'🇻🇪':'https://flagcdn.com/w20/ve.png',
-'🇸🇾':'https://flagcdn.com/w20/sy.png',
-'🇲🇽':'https://flagcdn.com/w20/mx.png',
-'🇲🇾':'https://flagcdn.com/w20/my.png',
-'🇬🇧':'https://flagcdn.com/w20/gb.png',
-'🇻🇳':'https://flagcdn.com/w20/vn.png',
-'🇮🇷':'https://flagcdn.com/w20/ir.png',
-'🇧🇩':'https://flagcdn.com/w20/bd.png',
-'🇮🇳':'https://flagcdn.com/w20/in.png',
-'🇪🇬':'https://flagcdn.com/w20/eg.png',
-'🇨🇺':'https://flagcdn.com/w20/cu.png',
-'🇨🇴':'https://flagcdn.com/w20/co.png',
-'🇮🇩':'https://flagcdn.com/w20/id.png',
-'🇲🇲':'https://flagcdn.com/w20/mm.png',
-'🇨🇦':'https://flagcdn.com/w20/ca.png',
-'🇺🇸':'https://flagcdn.com/w20/us.png',
-'🇷🇺':'https://flagcdn.com/w20/ru.png'
-}
-
-// Номера
-const numbers = [
-{country:'🎃 Анонимный Telegram', price:'6500 ₽', code:'+888', info:'Тип: Анонимная SIM<br>Страна: Международный<br>Использование: Для скрытой регистрации и защиты личного номера'},
-{country:'🇦🇪 ОАЭ (Дубай)', price:'300 ₽', code:'+971', info:'Виртуальная SIM, поддержка Telegram, WhatsApp, Viber'},
-{country:'🇪🇸 Испания', price:'120 ₽', code:'+34', info:'Виртуальная SIM, поддержка Telegram, WhatsApp'},
-{country:'🇫🇷 Франция', price:'180 ₽', code:'+33', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇩🇪 Германия', price:'150 ₽', code:'+49', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇯🇵 Япония', price:'225 ₽', code:'+81', info:'Виртуальная SIM, поддержка Telegram, Line'},
-{country:'🇲🇩 Молдова', price:'215 ₽', code:'+373', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇬🇷 Греция', price:'120 ₽', code:'+30', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇦🇫 Афганистан', price:'125 ₽', code:'+93', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇵🇱 Польша', price:'200 ₽', code:'+48', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇺🇦 Украина (физ. сим)', price:'230 ₽', code:'+380', info:'Физическая SIM, поддержка Telegram, Viber, WhatsApp'},
-{country:'🇧🇷 Бразилия', price:'90 ₽', code:'+55', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇹🇭 Таиланд', price:'250 ₽', code:'+66', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇺🇿 Узбекистан (физ. сим)', price:'140 ₽', code:'+998', info:'Физическая SIM, поддержка Telegram'},
-{country:'🇦🇷 Аргентина', price:'90 ₽', code:'+54', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇵🇭 Филиппины', price:'90 ₽', code:'+63', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇹🇷 Турция', price:'150 ₽', code:'+90', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇰🇿 Казахстан', price:'250 ₽', code:'+7', info:'Физическая SIM, поддержка Telegram'},
-{country:'🇾🇪 Йемен', price:'125 ₽', code:'+967', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇻🇪 Венесуэла', price:'110 ₽', code:'+58', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇸🇾 Сирия', price:'90 ₽', code:'+963', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇲🇽 Мексика', price:'110 ₽', code:'+52', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇲🇾 Малайзия', price:'110 ₽', code:'+60', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇬🇧 Великобритания', price:'90 ₽', code:'+44', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇻🇳 Вьетнам', price:'200 ₽', code:'+84', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇮🇷 Иран', price:'120 ₽', code:'+98', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇧🇩 Бангладеш', price:'90 ₽', code:'+880', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇮🇳 Индия', price:'65 ₽', code:'+91', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇪🇬 Египет', price:'100 ₽', code:'+20', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇨🇺 Куба', price:'75 ₽', code:'+53', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇨🇴 Колумбия', price:'90 ₽', code:'+57', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇮🇩 Индонезия', price:'80 ₽', code:'+62', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇲🇲 Мьянма', price:'65 ₽', code:'+95', info:'Виртуальная SIM, поддержка Telegram'},
-{country:'🇨🇦 Канада', price:'75 ₽', code:'+1 Канада', info:'Физическая SIM, поддержка Telegram'},
-{country:'🇺🇸 Америка', price:'75 ₽', code:'+1 США', info:'Физическая SIM, поддержка Telegram'},
-{country:'🇷🇺 Россия', price:'300 ₽', code:'РФ', info:'Физическая SIM, поддержка Telegram, Viber, WhatsApp'}
-];
-
-// Рендер карточек с flip и флагами
-const grid = document.getElementById("numbers");
-numbers.forEach(n=>{
-  const card = document.createElement("div");
-  card.className="card";
-  const flag = flags[n.country.slice(0,2)] || '';
-  card.innerHTML = `
-    <div class="card-inner card-front">
-      <div class="country"><img src="${flag}" alt="flag">${n.country}</div>
-      <div class="price">${n.price}</div>
-    </div>
-    <div class="card-inner card-back">
-      <h3>${n.country}</h3>
-      <p>${n.info}</p>
-      <div class="price">${n.price}</div>
-    </div>
-  `;
-  card.addEventListener("click",()=>card.classList.toggle("flipped"));
-  grid.appendChild(card);
-});
-
-// Плавное появление карточек
-window.addEventListener("load", ()=>{
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card,i)=>setTimeout(()=>{card.classList.add("show");}, i*50));
-});
-
-// поиск
-let search=document.getElementById("search");
+let search=document.getElementById("search")
 search.addEventListener("keyup",function(){
 let filter=this.value.toLowerCase()
 let cards=document.querySelectorAll(".card")
@@ -284,9 +189,13 @@ function toggleTheme(){
 document.body.classList.toggle("light")
 if(document.body.classList.contains("light")){
 localStorage.setItem("theme","light")
-}else{localStorage.setItem("theme","dark")}
+}else{
+localStorage.setItem("theme","dark")
 }
-if(localStorage.getItem("theme")==="light"){document.body.classList.add("light")}
+}
+if(localStorage.getItem("theme")==="light"){
+document.body.classList.add("light")
+}
 </script>
 
 </body>

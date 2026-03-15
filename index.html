@@ -9,109 +9,150 @@
 body{
 margin:0;
 font-family:Arial;
-background:#0f0f0f;
+background:#0e0e0e;
 color:#eaeaea;
+opacity:0;
+animation:fadeIn 1s forwards;
+}
+
+/* плавное появление */
+
+@keyframes fadeIn{
+to{opacity:1;}
 }
 
 header{
 text-align:center;
-padding:30px;
-font-size:40px;
+padding:15px;
+font-size:26px;
 font-weight:bold;
 color:#00ff9f;
-letter-spacing:3px;
 }
+
+/* контейнер */
 
 .container{
 display:flex;
-justify-content:space-between;
-padding:30px;
-gap:30px;
+gap:15px;
+padding:15px;
+max-width:1200px;
+margin:auto;
 }
 
-/* левая колонка */
+/* инфо */
+
 .info{
 width:40%;
 background:#151515;
-padding:25px;
-border-radius:10px;
+padding:15px;
+border-radius:6px;
+font-size:13px;
+line-height:1.4;
 }
 
-.info h2{
+.info h3{
 color:#00ff9f;
+margin-top:10px;
 }
 
-.info p{
-line-height:1.6;
-}
+/* магазин */
 
-/* прайс */
-.price{
+.shop{
 width:60%;
-background:#151515;
-padding:20px;
-border-radius:10px;
 }
 
 /* поиск */
-.controls{
-margin-bottom:15px;
-display:flex;
+
+.search{
+margin-bottom:10px;
+}
+
+.search input{
+width:100%;
+padding:7px;
+border:none;
+border-radius:5px;
+}
+
+/* карточки */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
 gap:10px;
 }
 
-.controls input{
-padding:8px;
-width:200px;
-border:none;
-border-radius:6px;
-}
+/* карточка */
 
-.controls button{
-padding:8px 12px;
-border:none;
-border-radius:6px;
-background:#00ff9f;
-cursor:pointer;
-}
-
-/* таблица */
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
+.card{
+background:#151515;
 padding:10px;
-border-bottom:1px solid #333;
+border-radius:6px;
+text-align:center;
+font-size:13px;
+transition:0.25s;
+animation:cardFade 0.8s ease;
 }
 
-th{
-color:#00ff9f;
+@keyframes cardFade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-tr:hover{
+.card:hover{
 background:#1c1c1c;
+transform:scale(1.04);
 }
 
-/* кнопка */
+.country{
+font-size:14px;
+margin-bottom:5px;
+}
+
+.price{
+color:#00ff9f;
+font-weight:bold;
+}
+
+.buy{
+display:block;
+background:#00ff9f;
+color:black;
+padding:5px;
+border-radius:4px;
+text-decoration:none;
+font-size:12px;
+margin-top:6px;
+}
+
+.buy:hover{
+background:#00cc7f;
+}
 
 .telegram{
 display:block;
-width:250px;
-margin:40px auto;
+width:200px;
+margin:20px auto;
 text-align:center;
-padding:15px;
+padding:10px;
 background:#00ff9f;
 color:black;
 font-weight:bold;
-border-radius:8px;
+border-radius:6px;
 text-decoration:none;
 }
 
-.telegram:hover{
-background:#00cc7f;
+.footer{
+text-align:center;
+font-size:12px;
+color:#777;
+padding-bottom:15px;
 }
 
 </style>
@@ -125,140 +166,153 @@ background:#00cc7f;
 
 <div class="info">
 
-<h2>Зачем нужны Telegram номера?</h2>
-
-<p>Telegram номера используются для регистрации аккаунтов без личной SIM-карты.</p>
-
-<p>Они помогают сохранить анонимность и защитить основной номер.</p>
-
-<p>Подходят для:</p>
+<h3>Что такое Telegram номера</h3>
 
 <p>
-• Telegram каналов<br>
-• маркетинга<br>
-• дополнительных аккаунтов<br>
-• безопасной коммуникации
+Telegram номера — это реальные или виртуальные
+номера разных стран, которые используются для
+регистрации аккаунтов без личной SIM карты.
 </p>
 
-<p>Все номера проверены и работают стабильно.</p>
+<h3>Для чего используют</h3>
+
+<p>
+• создание дополнительных Telegram аккаунтов<br>
+• управление каналами и ботами<br>
+• маркетинг и реклама<br>
+• защита личного номера<br>
+• регистрация сервисов
+</p>
+
+<h3>Преимущества</h3>
+
+<p>
+✔ стабильная работа<br>
+✔ большой выбор стран<br>
+✔ быстрый доступ<br>
+✔ безопасная регистрация
+</p>
+
+<h3>Как проходит покупка</h3>
+
+<p>
+1️⃣ выбираете страну<br>
+2️⃣ нажимаете кнопку написать<br>
+3️⃣ оплачиваете номер<br>
+4️⃣ получаете его сразу же после покупки
+</p>
+
+<h3>Гарантия</h3>
+
+<p>
+Все номера проверены и выдаются
+в рабочем состоянии.  
+При проблемах возможна замена.
+</p>
+
+<h3>Оплата</h3>
+
+<p>
+💰 криптовалюта<br>
+💰 рубли
+</p>
 
 </div>
 
-<div class="price">
+<div class="shop">
 
-<div class="controls">
+<div class="search">
+<input type="text" id="search" placeholder="Поиск страны">
+</div>
 
-<input type="text" id="search" placeholder="Поиск страны...">
+<div class="grid" id="numbers">
 
-<button onclick="cheap()">До 100₽</button>
+<div class="card">
+<div class="country">⭐ 🇺🇸 США</div>
+<div class="price">75 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+1">написать</a>
+</div>
 
-<button onclick="showAll()">Все</button>
+<div class="card">
+<div class="country">⭐ 🇬🇧 Великобритания</div>
+<div class="price">90 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+44">написать</a>
+</div>
+
+<div class="card">
+<div class="country">⭐ 🇮🇳 Индия</div>
+<div class="price">65 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+91">написать</a>
+</div>
+
+<div class="card">
+<div class="country">🇪🇸 Испания</div>
+<div class="price">120 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+34">написать</a>
+</div>
+
+<div class="card">
+<div class="country">🇫🇷 Франция</div>
+<div class="price">180 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+33">написать</a>
+</div>
+
+<div class="card">
+<div class="country">🇩🇪 Германия</div>
+<div class="price">150 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+49">написать</a>
+</div>
+
+<div class="card">
+<div class="country">🇧🇷 Бразилия</div>
+<div class="price">90 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20+55">написать</a>
+</div>
+
+<div class="card">
+<div class="country">🇨🇦 Канада</div>
+<div class="price">75 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20Канада">написать</a>
+</div>
+
+<div class="card">
+<div class="country">🇷🇺 Россия</div>
+<div class="price">300 ₽</div>
+<a class="buy" href="https://t.me/ZimbNomera?text=Хочу%20номер%20РФ">написать</a>
+</div>
 
 </div>
 
-<table id="priceTable">
-
-<tr>
-<th>Номер</th>
-<th>Цена ₽</th>
-</tr>
-
-<tr><td>Анонимный Telegram +888</td><td>6500</td></tr>
-<tr><td>ОАЭ +971</td><td>300</td></tr>
-<tr><td>Испания +34</td><td>120</td></tr>
-<tr><td>Франция +33</td><td>180</td></tr>
-<tr><td>Германия +49</td><td>150</td></tr>
-<tr><td>Япония +81</td><td>225</td></tr>
-<tr><td>Молдова +373</td><td>215</td></tr>
-<tr><td>Греция +30</td><td>120</td></tr>
-<tr><td>Афганистан +93</td><td>125</td></tr>
-<tr><td>Польша +48</td><td>200</td></tr>
-<tr><td>Украина +380</td><td>230</td></tr>
-<tr><td>Бразилия +55</td><td>90</td></tr>
-<tr><td>Таиланд +66</td><td>250</td></tr>
-<tr><td>Узбекистан +998</td><td>140</td></tr>
-<tr><td>Аргентина +54</td><td>90</td></tr>
-<tr><td>Филиппины +63</td><td>90</td></tr>
-<tr><td>Турция +90</td><td>150</td></tr>
-<tr><td>Казахстан +7</td><td>250</td></tr>
-<tr><td>Йемен +967</td><td>125</td></tr>
-<tr><td>Венесуэла +58</td><td>110</td></tr>
-<tr><td>Сирия +963</td><td>90</td></tr>
-<tr><td>Мексика +52</td><td>110</td></tr>
-<tr><td>Малайзия +60</td><td>110</td></tr>
-<tr><td>Великобритания +44</td><td>90</td></tr>
-<tr><td>Вьетнам +84</td><td>200</td></tr>
-<tr><td>Иран +98</td><td>120</td></tr>
-<tr><td>Бангладеш +880</td><td>90</td></tr>
-<tr><td>Индия +91</td><td>65</td></tr>
-<tr><td>Египет +20</td><td>100</td></tr>
-<tr><td>Куба +53</td><td>75</td></tr>
-<tr><td>Колумбия +57</td><td>90</td></tr>
-<tr><td>Индонезия +62</td><td>80</td></tr>
-<tr><td>Мьянма +95</td><td>65</td></tr>
-<tr><td>Канада +1</td><td>75</td></tr>
-<tr><td>Америка +1</td><td>75</td></tr>
-<tr><td>РФ номер</td><td>300</td></tr>
-<tr><td>Перенос номера на РФ</td><td>350</td></tr>
-
-</table>
-
 </div>
 
 </div>
 
-<a class="telegram" href="https://t.me/ZimbNomera" target="_blank">
-Купить в Telegram
+<a class="telegram" href="https://t.me/ZimbNomera">
+Написать в Telegram
 </a>
+
+<div class="footer">
+Отзывы: https://t.me/otzivizimbnomera
+</div>
 
 <script>
 
-/* поиск */
+let search=document.getElementById("search")
 
-document.getElementById("search").addEventListener("keyup", function(){
+search.addEventListener("keyup",function(){
 
 let filter=this.value.toLowerCase()
-let rows=document.querySelectorAll("#priceTable tr")
+let cards=document.querySelectorAll(".card")
 
-rows.forEach((row,i)=>{
+cards.forEach(card=>{
 
-if(i===0)return
+let text=card.innerText.toLowerCase()
 
-let text=row.innerText.toLowerCase()
-
-row.style.display=text.includes(filter)?"":"none"
+card.style.display=text.includes(filter)?"":"none"
 
 })
 
 })
-
-/* дешевые */
-
-function cheap(){
-
-let rows=document.querySelectorAll("#priceTable tr")
-
-rows.forEach((row,i)=>{
-
-if(i===0)return
-
-let price=row.cells[1].innerText
-
-row.style.display=(price<=100)?"":"none"
-
-})
-
-}
-
-/* показать все */
-
-function showAll(){
-
-let rows=document.querySelectorAll("#priceTable tr")
-
-rows.forEach(row=>row.style.display="")
-
-}
 
 </script>
 

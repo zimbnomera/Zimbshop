@@ -38,7 +38,7 @@ body{
 
 /* glitch */
 .glitch{
-  font-size:70px;
+  font-size:80px;
   animation:glitch 1s infinite;
   letter-spacing:6px;
 }
@@ -51,21 +51,23 @@ body{
 .subtitle{
   color:#ff004c;
   margin-top:10px;
-  font-size:20px;
+  font-size:24px;
 }
 
 button{
   background:#00ff9f;
   border:none;
-  padding:18px 40px;
-  font-size:20px;
+  padding:25px 60px;
+  font-size:26px;
   cursor:pointer;
-  margin-top:40px;
+  margin-top:50px;
   transition:0.3s;
+  box-shadow:0 0 20px #00ff9f;
 }
 button:hover{
   background:#ff004c;
   color:white;
+  box-shadow:0 0 35px #ff004c, 0 0 50px #ff004c;
 }
 
 #terminal{
@@ -78,7 +80,7 @@ canvas{
   position:fixed;
   top:0;
   left:0;
-  z-index:-4;
+  z-index:-5;
 }
 
 /* сканер */
@@ -112,7 +114,7 @@ canvas{
   border-radius:50% 50% 0 0;
   filter: blur(8px);
   animation:floatGhost linear infinite;
-  z-index:-3;
+  z-index:-4;
 }
 @keyframes floatGhost{
   0% {transform: translateY(100vh);}
@@ -126,7 +128,7 @@ canvas{
   height:100%;
   background:rgba(0,255,150,0.02);
   pointer-events:none;
-  z-index:-2;
+  z-index:-3;
 }
 
 /* мигающие предупреждения */
@@ -146,6 +148,17 @@ canvas{
   0%,50%,100%{opacity:0;}
   25%,75%{opacity:1;}
 }
+
+/* электрические вспышки */
+#flash{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:white;
+  opacity:0;
+  pointer-events:none;
+  z-index:1000;
+}
 </style>
 </head>
 <body>
@@ -158,7 +171,8 @@ canvas{
 <div class="ghost" style="left:40%; animation-duration:30s;"></div>
 <div class="ghost" style="left:70%; animation-duration:35s;"></div>
 
-<div class="warning" id="warningText">SECURITY BREACH DETECTED ZIMBSHOP</div>
+<div class="warning" id="warningText">SECURITY BREACH DETECTED</div>
+<div id="flash"></div>
 
 <div id="scanner"></div>
 
@@ -168,10 +182,10 @@ canvas{
 
 <div id="main">
   <h1 class="glitch">ZIMB SHOP</h1>
-  <div class="subtitle">Hidden Number SHOP</div>
+  <div class="subtitle">ZIMB NUMBER SHOP</div>
   <div id="terminal"></div>
   <a href="https://t.me/zimbnomer" id="shopLink">
-    <button>ACCESS NUMBER SHOP</button>
+    <button>ZIMB NUMBER SHOP</button>
   </a>
 </div>
 
@@ -198,6 +212,7 @@ function loading(){
     startTerminal();
     startScanner();
     startWarnings();
+    startFlashes();
   }
 }
 loading();
@@ -276,6 +291,15 @@ function startWarnings(){
     warning.style.left=Math.random()*80+10+"%";
     warning.style.top=Math.random()*40+10+"%";
   },3000);
+}
+
+/* электрические вспышки */
+function startFlashes(){
+  let flash=document.getElementById("flash");
+  setInterval(()=>{
+    flash.style.opacity=Math.random()*0.3;
+    setTimeout(()=>{flash.style.opacity=0;},50);
+  },500 + Math.random()*1000);
 }
 </script>
 

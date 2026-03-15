@@ -4,303 +4,152 @@
 <meta charset="UTF-8">
 <title>ZIMB SHOP</title>
 <style>
-body{
-  margin:0;
-  background:black;
-  color:#00ff9f;
-  font-family:monospace;
-  overflow:hidden;
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: #111;
+  color: #00ff9f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  overflow-x: hidden;
 }
 
-/* загрузка */
-#loading{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  font-size:22px;
-  z-index:1000;
+h1 {
+  font-size: 60px;
+  margin: 0;
+  color: #ff004c;
+  animation: glow 2s infinite alternate;
 }
 
-/* основной экран */
-#main{
-  display:none;
-  text-align:center;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+.subtitle {
+  font-size: 22px;
+  margin: 10px 0 30px;
+  color: #00ff9f;
 }
 
-/* glitch */
-.glitch{
-  font-size:80px;
-  animation:glitch 1s infinite;
-  letter-spacing:6px;
-}
-@keyframes glitch{
-  0%{text-shadow:3px 3px red;}
-  50%{text-shadow:-3px -3px cyan;}
-  100%{text-shadow:3px -3px red;}
+/* Анимация заголовка */
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ff004c, 0 0 10px #ff004c; }
+  to { text-shadow: 0 0 20px #ff004c, 0 0 40px #ff004c; }
 }
 
-.subtitle{
-  color:#ff004c;
-  margin-top:10px;
-  font-size:24px;
+/* Прайс-лист */
+table {
+  border-collapse: collapse;
+  width: 90%;
+  max-width: 800px;
+  margin-bottom: 40px;
 }
 
-button{
-  background:#00ff9f;
-  border:none;
-  padding:25px 60px;
-  font-size:26px;
-  cursor:pointer;
-  margin-top:50px;
-  transition:0.3s;
-  box-shadow:0 0 20px #00ff9f;
-}
-button:hover{
-  background:#ff004c;
-  color:white;
-  box-shadow:0 0 35px #ff004c, 0 0 50px #ff004c;
+th, td {
+  border: 1px solid #00ff9f;
+  padding: 10px;
+  text-align: center;
+  transition: 0.3s;
 }
 
-#terminal{
-  margin-top:30px;
-  font-size:16px;
+th {
+  background-color: #111;
+  color: #ff004c;
 }
 
-/* матрица */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-5;
+tr:nth-child(even) {
+  background-color: rgba(0,255,159,0.05);
 }
 
-/* сканер */
-#scanner{
-  position:fixed;
-  width:100%;
-  height:0;
-  background:rgba(0,255,150,0.1);
-  top:0;
-  left:0;
-  z-index:999;
-  pointer-events:none;
+/* Пульсирующая подсветка при наведении */
+tr:hover {
+  animation: pulse 1s infinite alternate;
+  cursor: pointer;
 }
 
-/* счетчик */
-#counter{
-  position:fixed;
-  bottom:10px;
-  right:20px;
-  font-size:14px;
-  color:#00ff9f;
-  z-index:1000;
+@keyframes pulse {
+  from { background-color: rgba(255,0,76,0.2); }
+  to { background-color: rgba(255,0,76,0.4); }
 }
 
-/* призрачные силуэты */
-.ghost{
-  position:fixed;
-  width:200px;
-  height:300px;
-  background:rgba(255,255,255,0.03);
-  border-radius:50% 50% 0 0;
-  filter: blur(8px);
-  animation:floatGhost linear infinite;
-  z-index:-4;
-}
-@keyframes floatGhost{
-  0% {transform: translateY(100vh);}
-  100% {transform: translateY(-350px);}
-}
-
-/* динамический туман */
-#fog{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,255,150,0.02);
-  pointer-events:none;
-  z-index:-3;
+/* Кнопки */
+.button, .button-alt {
+  background-color: #00ff9f;
+  border: none;
+  padding: 20px 50px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.4s;
+  text-decoration: none;
+  color: black;
+  margin: 10px;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-/* мигающие предупреждения */
-.warning{
-  position:fixed;
-  top:10%;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:28px;
-  color:red;
-  font-weight:bold;
-  opacity:0;
-  animation:blink 2s infinite;
-  z-index:1000;
-}
-@keyframes blink{
-  0%,50%,100%{opacity:0;}
-  25%,75%{opacity:1;}
+.button:hover, .button-alt:hover {
+  background-color: #ff004c;
+  color: white;
+  box-shadow: 0 0 20px #ff004c, 0 0 40px #ff004c;
 }
 
-/* электрические вспышки */
-#flash{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:white;
-  opacity:0;
-  pointer-events:none;
-  z-index:1000;
+/* Появление кнопки при клике на строку */
+.show {
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
 <body>
 
-<canvas id="matrix"></canvas>
+<h1>ZIMB SHOP</h1>
+<div class="subtitle">ZIMB NUMBER SHOP</div>
 
-<div id="fog"></div>
+<table id="pricelist">
+  <tr><th>Страна / Номер</th><th>Цена (₽)</th></tr>
+  <tr data-tg="@ZimbNomera"><td>Анонимный Telegram +888</td><td>6500 / мес</td></tr>
+  <tr data-tg="@ZimbNomera"><td>ОАЭ (Дубай) +971</td><td>300</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Испания +34</td><td>120</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Франция +33</td><td>180</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Германия +49</td><td>150</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Япония +81</td><td>225</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Молдова +373</td><td>215</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Греция +30</td><td>120</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Афганистан +93</td><td>125</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Польша +48</td><td>200</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Украина (физ. сим) +380</td><td>230</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Бразилия +55</td><td>90</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Таиланд +66</td><td>250</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Узбекистан (физ. сим) +998</td><td>140</td></tr>
+  <tr data-tg="@ZimbNomera"><td>РФ номер</td><td>300</td></tr>
+  <tr data-tg="@ZimbNomera"><td>Перенос номера на РФ</td><td>350</td></tr>
+</table>
 
-<div class="ghost" style="left:10%; animation-duration:25s;"></div>
-<div class="ghost" style="left:40%; animation-duration:30s;"></div>
-<div class="ghost" style="left:70%; animation-duration:35s;"></div>
-
-<div class="warning" id="warningText">SECURITY BREACH DETECTED</div>
-<div id="flash"></div>
-
-<div id="scanner"></div>
-
-<div id="loading">
-  <div id="loadText">INITIALIZING NETWORK...</div>
-</div>
-
-<div id="main">
-  <h1 class="glitch">ZIMB SHOP</h1>
-  <div class="subtitle">ZIMB NUMBER SHOP</div>
-  <div id="terminal"></div>
-  <a href="https://t.me/zimbnomer" id="shopLink">
-    <button>ZIMB NUMBER SHOP</button>
-  </a>
-</div>
-
-<div id="counter">Transitions: 0</div>
+<!-- Кнопка для перехода в Telegram -->
+<a href="https://t.me/ZimbNomera" target="_blank" id="tgButton" class="button">Перейти в Telegram</a>
 
 <script>
-/* загрузка */
-let loadMessages=[
-  "INITIALIZING NETWORK...",
-  "SCANNING USER DEVICE...",
-  "DETECTING SIGNAL...",
-  "VERIFYING ACCESS...",
-  "ACCESS GRANTED"
-];
-let l=0;
-function loading(){
-  if(l<loadMessages.length){
-    document.getElementById("loadText").innerText=loadMessages[l];
-    l++;
-    setTimeout(loading,900);
-  }else{
-    document.getElementById("loading").style.display="none";
-    document.getElementById("main").style.display="block";
-    startTerminal();
-    startScanner();
-    startWarnings();
-    startFlashes();
-  }
-}
-loading();
+// Скрываем кнопку изначально
+const tgButton = document.getElementById('tgButton');
+tgButton.style.opacity = 0;
 
-/* терминал */
-let terminalLines=[
-  "> connecting to hidden server...",
-  "> encrypted channel established...",
-  "> loading number marketplace...",
-  "> security bypassed",
-  "> welcome user"
-];
-let t=0;
-function startTerminal(){
-  let terminal=document.getElementById("terminal");
-  let interval=setInterval(()=>{
-    if(t<terminalLines.length){
-      terminal.innerHTML+=terminalLines[t]+"<br>";
-      t++;
-    }else{
-      clearInterval(interval);
-    }
-  },700);
-}
-
-/* матрица */
-let canvas=document.getElementById("matrix");
-let ctx=canvas.getContext("2d");
-canvas.height=window.innerHeight;
-canvas.width=window.innerWidth;
-let letters="01".split("");
-let fontSize=14;
-let columns=canvas.width/fontSize;
-let drops=[];
-for(let x=0;x<columns;x++) drops[x]=1;
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.05)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#00ff9f";
-  ctx.font=fontSize+"px monospace";
-  for(let i=0;i<drops.length;i++){
-    let text=letters[Math.floor(Math.random()*letters.length)];
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-    if(drops[i]*fontSize>canvas.height&&Math.random()>0.975) drops[i]=0;
-    drops[i]++;
-  }
-}
-setInterval(draw,33);
-
-/* сканер */
-function startScanner(){
-  let scanner=document.getElementById("scanner");
-  let pos=0;
-  setInterval(()=>{
-    pos+=5;
-    scanner.style.height=pos+"px";
-    if(pos>window.innerHeight){
-      pos=0;
-      scanner.style.height="0px";
-    }
-  },30);
-}
-
-/* счетчик переходов */
-let count=localStorage.getItem("tg_clicks") || 0;
-document.getElementById("counter").innerText="Transitions: "+count;
-document.getElementById("shopLink").addEventListener("click",function(){
-  count++;
-  localStorage.setItem("tg_clicks",count);
+// Делаем строки кликабельными и анимируем кнопку
+const rows = document.querySelectorAll('#pricelist tr[data-tg]');
+rows.forEach(row => {
+  row.addEventListener('click', () => {
+    const tg = row.getAttribute('data-tg');
+    // Добавляем класс для анимации появления
+    tgButton.classList.add('show');
+    // Открываем Telegram через 300ms для плавности
+    setTimeout(() => {
+      window.open(`https://t.me/${tg}`, '_blank');
+    }, 300);
+  });
 });
-
-/* мигающие предупреждения */
-function startWarnings(){
-  let warning=document.getElementById("warningText");
-  setInterval(()=>{
-    warning.style.left=Math.random()*80+10+"%";
-    warning.style.top=Math.random()*40+10+"%";
-  },3000);
-}
-
-/* электрические вспышки */
-function startFlashes(){
-  let flash=document.getElementById("flash");
-  setInterval(()=>{
-    flash.style.opacity=Math.random()*0.3;
-    setTimeout(()=>{flash.style.opacity=0;},50);
-  },500 + Math.random()*1000);
-}
 </script>
 
 </body>

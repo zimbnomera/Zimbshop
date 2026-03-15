@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>VOID SIGNAL</title>
+<title>ZIMB SIGNAL</title>
 
 <style>
 
@@ -21,16 +21,15 @@ position:fixed;
 width:100%;
 height:100%;
 background:black;
-color:#00ff9f;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 flex-direction:column;
-font-size:20px;
-z-index:999;
+font-size:22px;
+z-index:1000;
 }
 
-/* основной сайт */
+/* основной экран */
 
 #main{
 display:none;
@@ -44,25 +43,30 @@ transform:translate(-50%,-50%);
 /* glitch */
 
 .glitch{
-font-size:60px;
+font-size:70px;
 animation:glitch 1s infinite;
+letter-spacing:6px;
 }
 
 @keyframes glitch{
-0%{text-shadow:2px 2px red;}
-50%{text-shadow:-2px -2px blue;}
-100%{text-shadow:2px -2px red;}
+0%{text-shadow:3px 3px red;}
+50%{text-shadow:-3px -3px cyan;}
+100%{text-shadow:3px -3px red;}
 }
 
-/* кнопка */
+.subtitle{
+color:#ff004c;
+margin-top:10px;
+font-size:20px;
+}
 
 button{
 background:#00ff9f;
 border:none;
-padding:20px 40px;
+padding:18px 40px;
 font-size:20px;
 cursor:pointer;
-margin-top:30px;
+margin-top:40px;
 }
 
 button:hover{
@@ -70,21 +74,64 @@ background:#ff004c;
 color:white;
 }
 
-/* терминал */
-
 #terminal{
 margin-top:30px;
-color:#00ff9f;
 font-size:16px;
 }
 
-/* matrix canvas */
+/* матрица */
 
 canvas{
 position:fixed;
 top:0;
 left:0;
-z-index:-1;
+z-index:-3;
+}
+
+/* AI глаза */
+
+.eye{
+position:fixed;
+width:160px;
+height:160px;
+border-radius:50%;
+border:3px solid #00ff9f;
+box-shadow:0 0 30px #00ff9f;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:-2;
+}
+
+.pupil{
+width:40px;
+height:40px;
+background:#ff004c;
+border-radius:50%;
+position:absolute;
+}
+
+/* сканер */
+
+#scanner{
+position:fixed;
+width:100%;
+height:0;
+background:rgba(0,255,150,0.1);
+top:0;
+left:0;
+z-index:999;
+pointer-events:none;
+}
+
+/* счетчик */
+
+#counter{
+position:fixed;
+bottom:10px;
+right:20px;
+font-size:14px;
+color:#00ff9f;
 }
 
 </style>
@@ -94,54 +141,63 @@ z-index:-1;
 
 <canvas id="matrix"></canvas>
 
+<div id="scanner"></div>
+
+<!-- AI глаза -->
+
+<div class="eye" id="eye1"><div class="pupil"></div></div>
+<div class="eye" id="eye2"><div class="pupil"></div></div>
+<div class="eye" id="eye3"><div class="pupil"></div></div>
+
 <div id="loading">
-
-<div id="loadText">INITIALIZING SYSTEM...</div>
-
+<div id="loadText">INITIALIZING NETWORK...</div>
 </div>
 
 <div id="main">
 
-<h1 class="glitch">VOID SIGNAL</h1>
+<h1 class="glitch">ZIMB SIGNAL</h1>
+
+<div class="subtitle">Hidden Number Market</div>
 
 <div id="terminal"></div>
 
-<a href="https://t.me/zimbnomer">
-<button>ENTER STORE</button>
+<a href="https://t.me/zimbnomer" id="shopLink">
+<button>ACCESS NUMBER MARKET</button>
 </a>
 
 </div>
+
+<div id="counter">Transitions: 0</div>
 
 <script>
 
 /* загрузка */
 
-let messages=[
-"INITIALIZING SYSTEM...",
-"SCANNING NETWORK...",
-"DETECTING USER...",
+let loadMessages=[
+"INITIALIZING NETWORK...",
+"SCANNING USER DEVICE...",
+"DETECTING SIGNAL...",
+"VERIFYING ACCESS...",
 "ACCESS GRANTED"
 ];
 
-let i=0;
+let l=0;
 
 function loading(){
 
-if(i<messages.length){
+if(l<loadMessages.length){
 
-document.getElementById("loadText").innerText=messages[i];
+document.getElementById("loadText").innerText=loadMessages[l];
+l++;
 
-i++;
-
-setTimeout(loading,1000);
+setTimeout(loading,900);
 
 }else{
 
 document.getElementById("loading").style.display="none";
-
 document.getElementById("main").style.display="block";
-
 startTerminal();
+startScanner();
 
 }
 
@@ -151,10 +207,11 @@ loading();
 
 /* терминал */
 
-let terminalText=[
-"> connecting to network...",
-"> bypassing firewall...",
-"> secure channel created",
+let terminalLines=[
+"> connecting to hidden server...",
+"> encrypted channel established...",
+"> loading number marketplace...",
+"> security bypassed",
 "> welcome user"
 ];
 
@@ -166,10 +223,9 @@ let terminal=document.getElementById("terminal");
 
 let interval=setInterval(()=>{
 
-if(t<terminalText.length){
+if(t<terminalLines.length){
 
-terminal.innerHTML+=terminalText[t]+"<br>";
-
+terminal.innerHTML+=terminalLines[t]+"<br>";
 t++;
 
 }else{
@@ -178,26 +234,20 @@ clearInterval(interval);
 
 }
 
-},800);
+},700);
 
 }
 
-/* matrix background */
+/* матрица */
 
 let canvas=document.getElementById("matrix");
-
 let ctx=canvas.getContext("2d");
 
 canvas.height=window.innerHeight;
-
 canvas.width=window.innerWidth;
 
-let letters="01";
-
-letters=letters.split("");
-
+let letters="01".split("");
 let fontSize=14;
-
 let columns=canvas.width/fontSize;
 
 let drops=[];
@@ -229,6 +279,76 @@ drops[i]++;
 }
 
 setInterval(draw,33);
+
+/* AI глаза следят за курсором */
+
+document.addEventListener("mousemove",function(e){
+
+document.querySelectorAll(".pupil").forEach(pupil=>{
+
+let x=(e.clientX/window.innerWidth-0.5)*40;
+let y=(e.clientY/window.innerHeight-0.5)*40;
+
+pupil.style.transform="translate("+x+"px,"+y+"px)";
+
+});
+
+});
+
+/* движение глаз */
+
+function moveEyes(){
+
+document.querySelectorAll(".eye").forEach(eye=>{
+
+let x=Math.random()*window.innerWidth;
+let y=Math.random()*window.innerHeight;
+
+eye.style.left=x+"px";
+eye.style.top=y+"px";
+
+});
+
+}
+
+setInterval(moveEyes,4000);
+
+/* сканер пользователя */
+
+function startScanner(){
+
+let scanner=document.getElementById("scanner");
+
+let pos=0;
+
+setInterval(()=>{
+
+pos+=5;
+
+scanner.style.height=pos+"px";
+
+if(pos>window.innerHeight){
+pos=0;
+scanner.style.height="0px";
+}
+
+},30);
+
+}
+
+/* счетчик переходов */
+
+let count=localStorage.getItem("tg_clicks") || 0;
+
+document.getElementById("counter").innerText="Transitions: "+count;
+
+document.getElementById("shopLink").addEventListener("click",function(){
+
+count++;
+
+localStorage.setItem("tg_clicks",count);
+
+});
 
 </script>
 
